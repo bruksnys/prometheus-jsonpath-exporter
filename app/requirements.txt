@@ -1,4 +1,4 @@
-pytz
-objectpath
-prometheus_client
-pyYAML
+pytz==2019.3
+objectpath==0.6.1
+prometheus_client==0.7.1
+pyYAML==5.1.2
