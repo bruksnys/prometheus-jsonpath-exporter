@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import json
 import time
-import urllib2
+import urllib.request
 from prometheus_client import start_http_server
 from prometheus_client.core import GaugeMetricFamily, REGISTRY
 import argparse
@@ -19,7 +19,7 @@ class JsonPathCollector(object):
 
   def collect(self):
     config = self._config
-    result = json.loads(urllib2.urlopen(config['json_data_url'], timeout=10).read())
+    result = json.loads(urllib.request.urlopen(config['json_data_url'], timeout=10).read())
     result_tree = Tree(result)
     for metric_config in config['metrics']:
       metric_name = "{}_{}".format(config['metric_name_prefix'], metric_config['name'])
@@ -32,7 +32,7 @@ class JsonPathCollector(object):
 
 
 if __name__ == "__main__":
-  parser = argparse.ArgumentParser(description='Expose metrics bu jsonpath for configured url')
+  parser = argparse.ArgumentParser(description='Expose metrics with jsonpath for configured url')
   parser.add_argument('config_file_path', help='Path of the config file')
   args = parser.parse_args()
   with open(args.config_file_path) as config_file:
