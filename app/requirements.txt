@@ -1,4 +1,4 @@
-pytz==2019.3
+pytz==2020.5
 objectpath==0.6.1
 prometheus_client==0.7.1
 pyYAML==5.3
